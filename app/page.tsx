@@ -1,6 +1,8 @@
+import Image from 'next/image'
+import logo from '@/app/Images/logo.png'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
-import { ArrowRight, Bot, BrainCircuit, Highlighter, BarChart3, Sparkles } from 'lucide-react'
+import { ArrowRight, Bot, Highlighter, BarChart3, Sparkles } from 'lucide-react'
 
 export default function Home() {
   return (
@@ -14,7 +16,13 @@ export default function Home() {
       <div className="fixed top-6 inset-x-0 z-50 flex justify-center px-4 pointer-events-none">
         <header className="w-full max-w-5xl bg-[#1A1515]/70 backdrop-blur-xl border border-[#F5F2E8]/10 rounded-full px-6 h-16 flex items-center justify-between shadow-2xl pointer-events-auto">
           <div className="flex items-center space-x-3">
-            <BrainCircuit className="h-6 w-6 text-[#E9C85B]" />
+            <Image 
+              src={logo} 
+              alt="DocScope AI Logo" 
+              width={28} 
+              height={28} 
+              className="rounded-md object-contain"
+            />
             <span className="font-bold text-xl tracking-tight text-[#F5F2E8]">
               DocScope AI
             </span>

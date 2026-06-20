@@ -1,8 +1,10 @@
+import Image from 'next/image'
+import logo from '@/app/Images/logo.png'
 import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { FileText, BookOpen, GraduationCap, History, ArrowRight, Trash2, BrainCircuit } from 'lucide-react'
+import { FileText, BookOpen, GraduationCap, History, ArrowRight, Trash2 } from 'lucide-react'
 import { UploadButton } from '@/components/workspace/upload-button'
 import Link from 'next/link'
 import { revalidatePath } from 'next/cache'
@@ -52,7 +54,13 @@ export default async function DashboardPage() {
       <header className="border-b border-[#D3C9AA] bg-[#DFD6B7] sticky top-0 z-40 shadow-sm">
         <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
           <div className="flex items-center space-x-3">
-            <BrainCircuit className="h-6 w-6 text-[#DB6E4C]" />
+            <Image 
+              src={logo} 
+              alt="DocScope Logo" 
+              width={28} 
+              height={28} 
+              className="rounded-md object-contain"
+            />
             <span className="font-bold text-xl text-[#1A1515]">DocScope</span>
           </div>
           <div className="flex items-center space-x-6">

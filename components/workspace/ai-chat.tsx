@@ -13,8 +13,6 @@ type Message = {
 export function AiChat({ documentId }: { documentId: string }) {
   const [input, setInput] = useState('')
   const [isTyping, setIsTyping] = useState(false)
-  
-  // Track which messages are currently saving, and which have been successfully saved
   const [savingIndex, setSavingIndex] = useState<number | null>(null)
   const [savedIndexes, setSavedIndexes] = useState<number[]>([])
   
@@ -45,10 +43,7 @@ export function AiChat({ documentId }: { documentId: string }) {
       const response = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ 
-          message: userMessage,
-          documentId: documentId 
-        })
+        body: JSON.stringify({ message: userMessage, documentId: documentId })
       })
 
       const data = await response.json()
@@ -65,29 +60,21 @@ export function AiChat({ documentId }: { documentId: string }) {
     }
   }
 
-  // NEW: Function to handle saving a Q&A pair to the database
   const handleSaveQA = async (aiIndex: number) => {
-    // Grab the AI's answer, and the user's question right before it
     const aiAnswer = messages[aiIndex].content
     const question = messages[aiIndex - 1]?.content
 
     if (!question || !aiAnswer) return
-
     setSavingIndex(aiIndex)
 
     try {
       const response = await fetch('/api/chat/save', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          documentId,
-          question,
-          aiAnswer
-        })
+        body: JSON.stringify({ documentId, question, aiAnswer })
       })
 
       if (response.ok) {
-        // Mark as saved so the UI changes to a green checkmark
         setSavedIndexes(prev => [...prev, aiIndex])
       } else {
         alert("Failed to save to learning log.")
@@ -100,49 +87,43 @@ export function AiChat({ documentId }: { documentId: string }) {
   }
 
   return (
-    <div className="flex flex-col h-full bg-white">
-      {/* Chat Header */}
-      <div className="h-12 border-b border-zinc-200 bg-zinc-50 flex items-center px-4 shrink-0">
-        <Bot className="h-5 w-5 text-blue-500 mr-2" />
-        <span className="font-semibold text-sm text-zinc-700">DocScope AI Assistant</span>
+    <div className="flex flex-col h-full bg-[#EBE3C3]">
+      <div className="h-14 border-b border-[#D3C9AA] bg-[#DFD6B7] flex items-center px-6 shrink-0 z-10 shadow-sm">
+        <Bot className="h-6 w-6 text-[#DB6E4C] mr-3" />
+        <span className="font-bold text-base text-[#1A1515]">DocScope AI Assistant</span>
       </div>
 
-      {/* Chat Messages Area */}
-      <div className="flex-1 overflow-y-auto p-4 space-y-6">
+      <div className="flex-1 overflow-y-auto p-6 space-y-8">
         {messages.map((msg, index) => (
           <div key={index} className={`flex items-start gap-4 ${msg.role === 'user' ? 'flex-row-reverse' : ''}`}>
-            {/* Avatar */}
-            <div className={`h-8 w-8 rounded-full flex items-center justify-center shrink-0 mt-1 ${msg.role === 'user' ? 'bg-zinc-800' : 'bg-blue-100'}`}>
-              {msg.role === 'user' ? <User className="h-5 w-5 text-white" /> : <Bot className="h-5 w-5 text-blue-600" />}
+            <div className={`h-10 w-10 rounded-full flex items-center justify-center shrink-0 mt-1 shadow-md ${msg.role === 'user' ? 'bg-[#1A1515]' : 'bg-[#DB6E4C]'}`}>
+              {msg.role === 'user' ? <User className="h-5 w-5 text-[#F5F2E8]" /> : <Bot className="h-6 w-6 text-[#F5F2E8]" />}
             </div>
             
-            {/* Message Bubble & Controls Container */}
             <div className={`flex flex-col ${msg.role === 'user' ? 'items-end' : 'items-start'} max-w-[85%]`}>
-              
-              <div className={`px-4 py-3 text-sm whitespace-pre-wrap ${
+              <div className={`px-5 py-4 text-base whitespace-pre-wrap shadow-sm ${
                 msg.role === 'user' 
-                  ? 'bg-zinc-800 text-white rounded-2xl rounded-tr-none' 
-                  : 'bg-zinc-100 text-zinc-800 leading-relaxed rounded-2xl rounded-tl-none'
+                  ? 'bg-[#1A1515] text-[#F5F2E8] rounded-3xl rounded-tr-sm' 
+                  : 'bg-[#DFD6B7] text-[#2B1C18] border border-[#D3C9AA] leading-relaxed rounded-3xl rounded-tl-sm'
               }`}>
                 {msg.content}
               </div>
 
-              {/* NEW: Save Button (Only show for AI messages, and skip the initial greeting which has index 0) */}
               {msg.role === 'ai' && index > 0 && (
-                <div className="mt-2">
+                <div className="mt-3">
                   <Button 
                     variant="ghost" 
                     size="sm" 
-                    className={`h-7 px-2 text-xs ${savedIndexes.includes(index) ? 'text-green-600 hover:text-green-700' : 'text-zinc-400 hover:text-blue-600'}`}
+                    className={`h-8 px-3 text-xs font-bold rounded-lg ${savedIndexes.includes(index) ? 'text-green-700 bg-green-100 hover:bg-green-200' : 'text-[#73615A] hover:text-[#DB6E4C] hover:bg-[#DFD6B7]'}`}
                     onClick={() => handleSaveQA(index)}
                     disabled={savingIndex === index || savedIndexes.includes(index)}
                   >
                     {savingIndex === index ? (
-                      <><Loader2 className="h-3 w-3 mr-1 animate-spin" /> Saving...</>
+                      <><Loader2 className="h-4 w-4 mr-2 animate-spin" /> Saving...</>
                     ) : savedIndexes.includes(index) ? (
-                      <><Check className="h-3 w-3 mr-1" /> Saved to Log</>
+                      <><Check className="h-4 w-4 mr-2" /> Saved to Log</>
                     ) : (
-                      <><BookmarkPlus className="h-3 w-3 mr-1" /> Save to Learning Log</>
+                      <><BookmarkPlus className="h-4 w-4 mr-2" /> Save to Learning Log</>
                     )}
                   </Button>
                 </div>
@@ -151,39 +132,36 @@ export function AiChat({ documentId }: { documentId: string }) {
           </div>
         ))}
         
-        {/* Typing Indicator */}
         {isTyping && (
           <div className="flex items-start gap-4">
-             <div className="h-8 w-8 bg-blue-100 rounded-full flex items-center justify-center shrink-0 mt-1">
-              <Bot className="h-5 w-5 text-blue-600" />
+             <div className="h-10 w-10 bg-[#DB6E4C] rounded-full flex items-center justify-center shrink-0 mt-1 shadow-md">
+              <Bot className="h-6 w-6 text-[#F5F2E8]" />
             </div>
-            <div className="bg-zinc-100 rounded-2xl rounded-tl-none px-4 py-3 text-zinc-500 flex items-center space-x-2">
-              <Loader2 className="h-4 w-4 animate-spin" />
-              <span className="text-xs font-medium">Reading document...</span>
+            <div className="bg-[#DFD6B7] border border-[#D3C9AA] rounded-3xl rounded-tl-sm px-6 py-4 text-[#73615A] flex items-center space-x-3 shadow-sm">
+              <Loader2 className="h-5 w-5 animate-spin text-[#DB6E4C]" />
+              <span className="text-sm font-bold">Analyzing document...</span>
             </div>
           </div>
         )}
-        
         <div ref={messagesEndRef} />
       </div>
 
-      {/* Chat Input Area */}
-      <div className="p-4 border-t border-zinc-200 bg-white shrink-0">
+      <div className="p-5 border-t border-[#D3C9AA] bg-[#DFD6B7] shrink-0">
         <form onSubmit={handleSend} className="relative flex items-center">
           <Input 
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder="Ask a question about this document..." 
-            className="pr-12 py-6 bg-zinc-50 border-zinc-200 focus-visible:ring-blue-500 shadow-sm"
+            className="pr-14 py-7 bg-[#EBE3C3] border-[#D3C9AA] text-[#1A1515] placeholder:text-[#73615A] focus-visible:ring-[#DB6E4C] shadow-inner text-base rounded-2xl"
             disabled={isTyping}
           />
           <Button 
             type="submit" 
             size="icon" 
-            className="absolute right-2 h-8 w-8 bg-blue-600 hover:bg-blue-500 text-white rounded-full"
+            className="absolute right-2 h-10 w-10 bg-[#DB6E4C] hover:bg-[#C25A3A] text-[#F5F2E8] rounded-xl shadow-md"
             disabled={!input.trim() || isTyping}
           >
-            <Send className="h-4 w-4 ml-0.5" />
+            <Send className="h-5 w-5 ml-1" />
           </Button>
         </form>
       </div>

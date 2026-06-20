@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
-// This imports the modern Inter font
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -17,9 +16,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      {/* We added suppressHydrationWarning here to stop browser extensions from crashing Next.js */}
       <body 
-        className={`${inter.className} antialiased bg-zinc-50 text-zinc-900`}
+        className={`${inter.className} antialiased bg-[#EBE3C3] text-[#2B1C18] selection:bg-[#DB6E4C] selection:text-[#F5F2E8]`}
         suppressHydrationWarning
       >
         {children}

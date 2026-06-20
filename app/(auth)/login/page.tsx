@@ -26,22 +26,22 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50">
-      <Card className="w-[350px]">
-        <CardHeader>
-          <CardTitle>Login to DocScope</CardTitle>
+    <div className="flex min-h-screen items-center justify-center bg-[#EBE3C3] p-4">
+      <Card className="w-full max-w-[400px] border-none shadow-2xl shadow-[#1A1515]/10 bg-[#DFD6B7]">
+        <CardHeader className="space-y-2 pb-6">
+          <CardTitle className="text-2xl font-bold text-[#1A1515] text-center">Login to DocScope</CardTitle>
         </CardHeader>
         <CardContent>
-          <form onSubmit={handleLogin} className="space-y-4">
-            <div className="space-y-2">
-              <Label>Email</Label>
+          <form onSubmit={handleLogin} className="space-y-6">
+            <div className="space-y-3">
+              <Label className="text-[#2B1C18] font-semibold">Email</Label>
               <Input type="email" onChange={(e) => setEmail(e.target.value)} required />
             </div>
-            <div className="space-y-2">
-              <Label>Password</Label>
+            <div className="space-y-3">
+              <Label className="text-[#2B1C18] font-semibold">Password</Label>
               <Input type="password" onChange={(e) => setPassword(e.target.value)} required />
             </div>
-            <Button className="w-full" type="submit">Sign In</Button>
+            <Button className="w-full text-base py-6 rounded-xl mt-4" type="submit">Sign In</Button>
           </form>
         </CardContent>
       </Card>

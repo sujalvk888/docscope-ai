@@ -8,53 +8,51 @@ import { QuizEngine } from './quiz-engine'
 import { FlashcardEngine } from './flashcard-engine'
 
 export function WorkspacePanel({ documentId }: { documentId: string }) {
-  // Added 'flashcards' to our tracking state
   const [activeTab, setActiveTab] = useState<'chat' | 'notes' | 'quiz' | 'flashcards'>('chat')
 
   return (
-    <div className="h-full flex flex-col bg-white">
+    <div className="h-full flex flex-col bg-[#EBE3C3]">
       {/* Tab Navigation Menu */}
-      <div className="flex items-center p-2 bg-zinc-100 border-b border-zinc-200 shrink-0 gap-1 overflow-x-auto no-scrollbar">
+      <div className="flex items-center p-3 bg-[#DFD6B7] border-b border-[#D3C9AA] shrink-0 gap-2 overflow-x-auto no-scrollbar shadow-sm z-20">
         <button
           onClick={() => setActiveTab('chat')}
-          className={`flex-1 min-w-[80px] whitespace-nowrap flex items-center justify-center px-2 py-2 text-xs font-semibold rounded-lg transition-all ${
+          className={`flex-1 min-w-[90px] whitespace-nowrap flex items-center justify-center px-3 py-2.5 text-sm font-bold rounded-xl transition-all duration-200 ${
             activeTab === 'chat' 
-              ? 'bg-white text-blue-600 shadow-sm border border-zinc-200/50' 
-              : 'text-zinc-500 hover:text-zinc-700 hover:bg-zinc-200/50'
+              ? 'bg-[#1A1515] text-[#F5F2E8] shadow-md' 
+              : 'text-[#73615A] hover:text-[#1A1515] hover:bg-[#EBE3C3]/60'
           }`}
         >
-          <MessageSquare className="h-3.5 w-3.5 mr-1.5" /> Chat
+          <MessageSquare className="h-4 w-4 mr-2" /> Chat
         </button>
         <button
           onClick={() => setActiveTab('notes')}
-          className={`flex-1 min-w-[80px] whitespace-nowrap flex items-center justify-center px-2 py-2 text-xs font-semibold rounded-lg transition-all ${
+          className={`flex-1 min-w-[90px] whitespace-nowrap flex items-center justify-center px-3 py-2.5 text-sm font-bold rounded-xl transition-all duration-200 ${
             activeTab === 'notes' 
-              ? 'bg-white text-blue-600 shadow-sm border border-zinc-200/50' 
-              : 'text-zinc-500 hover:text-zinc-700 hover:bg-zinc-200/50'
+              ? 'bg-[#1A1515] text-[#F5F2E8] shadow-md' 
+              : 'text-[#73615A] hover:text-[#1A1515] hover:bg-[#EBE3C3]/60'
           }`}
         >
-          <BookOpen className="h-3.5 w-3.5 mr-1.5" /> Notes
+          <BookOpen className="h-4 w-4 mr-2" /> Notes
         </button>
         <button
           onClick={() => setActiveTab('quiz')}
-          className={`flex-1 min-w-[80px] whitespace-nowrap flex items-center justify-center px-2 py-2 text-xs font-semibold rounded-lg transition-all ${
+          className={`flex-1 min-w-[90px] whitespace-nowrap flex items-center justify-center px-3 py-2.5 text-sm font-bold rounded-xl transition-all duration-200 ${
             activeTab === 'quiz' 
-              ? 'bg-white text-blue-600 shadow-sm border border-zinc-200/50' 
-              : 'text-zinc-500 hover:text-zinc-700 hover:bg-zinc-200/50'
+              ? 'bg-[#1A1515] text-[#F5F2E8] shadow-md' 
+              : 'text-[#73615A] hover:text-[#1A1515] hover:bg-[#EBE3C3]/60'
           }`}
         >
-          <GraduationCap className="h-3.5 w-3.5 mr-1.5" /> Quiz
+          <GraduationCap className="h-4 w-4 mr-2" /> Quiz
         </button>
-        {/* NEW: Flashcards Tab Button */}
         <button
           onClick={() => setActiveTab('flashcards')}
-          className={`flex-1 min-w-[90px] whitespace-nowrap flex items-center justify-center px-2 py-2 text-xs font-semibold rounded-lg transition-all ${
+          className={`flex-1 min-w-[90px] whitespace-nowrap flex items-center justify-center px-3 py-2.5 text-sm font-bold rounded-xl transition-all duration-200 ${
             activeTab === 'flashcards' 
-              ? 'bg-white text-blue-600 shadow-sm border border-zinc-200/50' 
-              : 'text-zinc-500 hover:text-zinc-700 hover:bg-zinc-200/50'
+              ? 'bg-[#1A1515] text-[#F5F2E8] shadow-md' 
+              : 'text-[#73615A] hover:text-[#1A1515] hover:bg-[#EBE3C3]/60'
           }`}
         >
-          <Layers className="h-3.5 w-3.5 mr-1.5" /> Cards
+          <Layers className="h-4 w-4 mr-2" /> Cards
         </button>
       </div>
 
@@ -74,7 +72,6 @@ export function WorkspacePanel({ documentId }: { documentId: string }) {
           <QuizEngine documentId={documentId} />
         </div>
 
-        {/* NEW: Flashcard Component */}
         <div className={`h-full ${activeTab === 'flashcards' ? 'block' : 'hidden'}`}>
           <FlashcardEngine documentId={documentId} />
         </div>

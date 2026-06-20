@@ -5,7 +5,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "DocScope AI",
+  title: "InfiDocs AI",
   description: "Your AI-powered document learning platform.",
 };
 

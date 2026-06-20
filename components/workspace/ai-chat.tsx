@@ -91,7 +91,7 @@ export function AiChat({ documentId }: { documentId: string }) {
       {/* Chat Header */}
       <div className="h-12 sm:h-14 border-b border-[#D3C9AA] bg-[#DFD6B7] flex items-center px-4 sm:px-6 shrink-0 z-10 shadow-sm">
         <Bot className="h-5 w-5 sm:h-6 sm:w-6 text-[#DB6E4C] mr-2 sm:mr-3" />
-        <span className="font-bold text-sm sm:text-base text-[#1A1515]">DocScope AI Assistant</span>
+        <span className="font-bold text-sm sm:text-base text-[#1A1515]">InfiDocs AI Assistant</span>
       </div>
 
       {/* Messages Area */}

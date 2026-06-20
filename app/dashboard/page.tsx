@@ -56,12 +56,12 @@ export default async function DashboardPage() {
           <div className="flex items-center space-x-2 sm:space-x-3">
             <Image 
               src={logo} 
-              alt="DocScope Logo" 
+              alt="InfiDocs AI Logo" 
               width={24} 
               height={24} 
               className="rounded-md object-contain sm:w-[28px] sm:h-[28px]"
             />
-            <span className="font-bold text-lg sm:text-xl text-[#1A1515]">DocScope</span>
+            <span className="font-bold text-lg sm:text-xl text-[#1A1515]">InfiDocs AI</span>
           </div>
           <div className="flex items-center space-x-4 sm:space-x-6">
             <span className="hidden sm:inline text-sm font-medium text-[#73615A]">{user.email}</span>

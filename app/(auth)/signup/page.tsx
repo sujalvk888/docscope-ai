@@ -47,12 +47,12 @@ export default function SignupPage() {
         <div className="absolute top-12 left-12 flex items-center space-x-3 z-10">
           <Image 
             src={logo} 
-            alt="DocScope AI Logo" 
+            alt="InfiDocs AI Logo" 
             width={32} 
             height={32} 
             className="rounded-md object-contain"
           />
-          <span className="font-extrabold text-2xl tracking-tight">DocScope AI</span>
+          <span className="font-extrabold text-2xl tracking-tight">InfiDocs AI</span>
         </div>
 
         {/* Center Decorative Value Prop */}
@@ -87,12 +87,12 @@ export default function SignupPage() {
         <div className="flex lg:hidden items-center space-x-3 mb-8 sm:mb-10 mt-8 sm:mt-0">
           <Image 
             src={logo} 
-            alt="DocScope AI Logo" 
+            alt="InfiDocs AI Logo" 
             width={28} 
             height={28} 
             className="rounded-md object-contain sm:w-[32px] sm:h-[32px]"
           />
-          <span className="font-extrabold text-xl sm:text-2xl tracking-tight text-[#1A1515]">DocScope AI</span>
+          <span className="font-extrabold text-xl sm:text-2xl tracking-tight text-[#1A1515]">InfiDocs AI</span>
         </div>
 
         {/* Form Container with Entrance Animation */}

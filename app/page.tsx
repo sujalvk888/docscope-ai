@@ -18,13 +18,13 @@ export default function Home() {
           <div className="flex items-center space-x-2 sm:space-x-3">
             <Image 
               src={logo} 
-              alt="DocScope AI Logo" 
+              alt="InfiDocs AI Logo" 
               width={24} 
               height={24} 
               className="rounded-md object-contain sm:w-[28px] sm:h-[28px]"
             />
             <span className="font-bold text-lg sm:text-xl tracking-tight text-[#F5F2E8]">
-              DocScope AI
+              InfiDocs AI
             </span>
           </div>
           <div className="flex items-center space-x-1 sm:space-x-4">

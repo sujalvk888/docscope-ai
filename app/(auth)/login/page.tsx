@@ -73,71 +73,71 @@ export default function LoginPage() {
       </div>
 
       {/* RIGHT PANEL: Auth Form */}
-      <div className="relative flex w-full lg:w-1/2 flex-col items-center justify-center p-8 sm:p-12">
+      <div className="relative flex w-full lg:w-1/2 flex-col items-center justify-center p-6 sm:p-12">
         
         {/* Back Navigation (Absolute positioned) */}
         <Link 
           href="/" 
-          className="absolute top-8 left-8 inline-flex items-center text-[#73615A] hover:text-[#DB6E4C] transition-colors text-sm font-bold tracking-wide"
+          className="absolute top-6 left-6 sm:top-8 sm:left-8 inline-flex items-center text-[#73615A] hover:text-[#DB6E4C] transition-colors text-sm font-bold tracking-wide z-10"
         >
           <ArrowLeft className="mr-2 h-4 w-4" /> Home
         </Link>
 
         {/* Mobile Logo (Visible only on small screens) */}
-        <div className="flex lg:hidden items-center space-x-3 mb-10">
+        <div className="flex lg:hidden items-center space-x-3 mb-8 sm:mb-10 mt-8 sm:mt-0">
           <Image 
             src={logo} 
             alt="DocScope AI Logo" 
-            width={32} 
-            height={32} 
-            className="rounded-md object-contain"
+            width={28} 
+            height={28} 
+            className="rounded-md object-contain sm:w-[32px] sm:h-[32px]"
           />
-          <span className="font-extrabold text-2xl tracking-tight text-[#1A1515]">DocScope AI</span>
+          <span className="font-extrabold text-xl sm:text-2xl tracking-tight text-[#1A1515]">DocScope AI</span>
         </div>
 
         {/* Form Container with Entrance Animation */}
         <div className="w-full max-w-[400px] animate-in fade-in zoom-in-[0.98] slide-in-from-bottom-8 duration-700 ease-out">
-          <div className="space-y-2 mb-10">
-            <h2 className="text-3xl font-extrabold text-[#1A1515] tracking-tight">Welcome back</h2>
-            <p className="text-[#73615A] text-base font-medium">Enter your credentials to access your workspace.</p>
+          <div className="space-y-2 mb-8 sm:mb-10 text-center lg:text-left">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#1A1515] tracking-tight">Welcome back</h2>
+            <p className="text-[#73615A] text-sm sm:text-base font-medium">Enter your credentials to access your workspace.</p>
           </div>
           
-          <form onSubmit={handleLogin} className="space-y-6">
-            <div className="space-y-3">
-              <Label className="text-[#2B1C18] font-bold text-sm uppercase tracking-wider">Email Address</Label>
+          <form onSubmit={handleLogin} className="space-y-5 sm:space-y-6">
+            <div className="space-y-2 sm:space-y-3">
+              <Label className="text-[#2B1C18] font-bold text-xs sm:text-sm uppercase tracking-wider">Email Address</Label>
               <Input 
                 type="email" 
                 placeholder="you@example.com" 
                 onChange={(e) => setEmail(e.target.value)} 
                 required 
                 disabled={isLoading}
-                className="bg-[#DFD6B7] border-[#D3C9AA] py-6 text-base rounded-xl font-medium placeholder:font-normal focus-visible:ring-[#DB6E4C]" 
+                className="bg-[#DFD6B7] border-[#D3C9AA] py-5 sm:py-6 text-sm sm:text-base rounded-xl font-medium placeholder:font-normal focus-visible:ring-[#DB6E4C]" 
               />
             </div>
-            <div className="space-y-3">
-              <Label className="text-[#2B1C18] font-bold text-sm uppercase tracking-wider">Password</Label>
+            <div className="space-y-2 sm:space-y-3">
+              <Label className="text-[#2B1C18] font-bold text-xs sm:text-sm uppercase tracking-wider">Password</Label>
               <Input 
                 type="password" 
                 placeholder="••••••••" 
                 onChange={(e) => setPassword(e.target.value)} 
                 required 
                 disabled={isLoading}
-                className="bg-[#DFD6B7] border-[#D3C9AA] py-6 text-base rounded-xl font-medium placeholder:font-normal focus-visible:ring-[#DB6E4C]" 
+                className="bg-[#DFD6B7] border-[#D3C9AA] py-5 sm:py-6 text-sm sm:text-base rounded-xl font-medium placeholder:font-normal focus-visible:ring-[#DB6E4C]" 
               />
             </div>
             
             <Button 
-              className="w-full text-lg py-7 rounded-xl mt-4 bg-[#1A1515] hover:bg-[#2B2323] text-[#F5F2E8] shadow-xl shadow-[#1A1515]/10 font-bold transition-transform active:scale-[0.98]" 
+              className="w-full text-base sm:text-lg py-6 sm:py-7 rounded-xl mt-2 sm:mt-4 bg-[#1A1515] hover:bg-[#2B2323] text-[#F5F2E8] shadow-xl shadow-[#1A1515]/10 font-bold transition-transform active:scale-[0.98]" 
               type="submit" 
               disabled={isLoading}
             >
-              {isLoading ? <Loader2 className="mr-3 h-5 w-5 animate-spin text-[#E9C85B]" /> : null}
+              {isLoading ? <Loader2 className="mr-2 sm:mr-3 h-4 w-4 sm:h-5 sm:w-5 animate-spin text-[#E9C85B]" /> : null}
               {isLoading ? 'Signing in...' : 'Sign In'}
             </Button>
           </form>
 
-          <div className="mt-10 text-center border-t border-[#D3C9AA]/60 pt-8">
-            <p className="text-[#73615A] text-base font-medium">
+          <div className="mt-8 sm:mt-10 text-center border-t border-[#D3C9AA]/60 pt-6 sm:pt-8">
+            <p className="text-[#73615A] text-sm sm:text-base font-medium">
               Don&apos;t have an account?{' '}
               <Link href="/signup" className="text-[#DB6E4C] hover:text-[#C25A3A] font-bold hover:underline underline-offset-4 transition-colors">
                 Sign up for free

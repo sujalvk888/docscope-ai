@@ -12,47 +12,47 @@ export function WorkspacePanel({ documentId }: { documentId: string }) {
 
   return (
     <div className="h-full flex flex-col bg-[#EBE3C3]">
-      {/* Tab Navigation Menu */}
-      <div className="flex items-center p-3 bg-[#DFD6B7] border-b border-[#D3C9AA] shrink-0 gap-2 overflow-x-auto no-scrollbar shadow-sm z-20">
+      {/* Tab Navigation Menu (Streamlined padding for mobile) */}
+      <div className="flex items-center p-2 sm:p-3 bg-[#DFD6B7] border-b border-[#D3C9AA] shrink-0 gap-1.5 sm:gap-2 overflow-x-auto no-scrollbar shadow-sm z-20">
         <button
           onClick={() => setActiveTab('chat')}
-          className={`flex-1 min-w-[90px] whitespace-nowrap flex items-center justify-center px-3 py-2.5 text-sm font-bold rounded-xl transition-all duration-200 ${
+          className={`flex-1 min-w-[80px] sm:min-w-[90px] whitespace-nowrap flex items-center justify-center px-2 py-2 sm:px-3 sm:py-2.5 text-xs sm:text-sm font-bold rounded-lg sm:rounded-xl transition-all duration-200 ${
             activeTab === 'chat' 
               ? 'bg-[#1A1515] text-[#F5F2E8] shadow-md' 
               : 'text-[#73615A] hover:text-[#1A1515] hover:bg-[#EBE3C3]/60'
           }`}
         >
-          <MessageSquare className="h-4 w-4 mr-2" /> Chat
+          <MessageSquare className="h-3.5 w-3.5 sm:h-4 sm:w-4 mr-1.5 sm:mr-2" /> Chat
         </button>
         <button
           onClick={() => setActiveTab('notes')}
-          className={`flex-1 min-w-[90px] whitespace-nowrap flex items-center justify-center px-3 py-2.5 text-sm font-bold rounded-xl transition-all duration-200 ${
+          className={`flex-1 min-w-[80px] sm:min-w-[90px] whitespace-nowrap flex items-center justify-center px-2 py-2 sm:px-3 sm:py-2.5 text-xs sm:text-sm font-bold rounded-lg sm:rounded-xl transition-all duration-200 ${
             activeTab === 'notes' 
               ? 'bg-[#1A1515] text-[#F5F2E8] shadow-md' 
               : 'text-[#73615A] hover:text-[#1A1515] hover:bg-[#EBE3C3]/60'
           }`}
         >
-          <BookOpen className="h-4 w-4 mr-2" /> Notes
+          <BookOpen className="h-3.5 w-3.5 sm:h-4 sm:w-4 mr-1.5 sm:mr-2" /> Notes
         </button>
         <button
           onClick={() => setActiveTab('quiz')}
-          className={`flex-1 min-w-[90px] whitespace-nowrap flex items-center justify-center px-3 py-2.5 text-sm font-bold rounded-xl transition-all duration-200 ${
+          className={`flex-1 min-w-[80px] sm:min-w-[90px] whitespace-nowrap flex items-center justify-center px-2 py-2 sm:px-3 sm:py-2.5 text-xs sm:text-sm font-bold rounded-lg sm:rounded-xl transition-all duration-200 ${
             activeTab === 'quiz' 
               ? 'bg-[#1A1515] text-[#F5F2E8] shadow-md' 
               : 'text-[#73615A] hover:text-[#1A1515] hover:bg-[#EBE3C3]/60'
           }`}
         >
-          <GraduationCap className="h-4 w-4 mr-2" /> Quiz
+          <GraduationCap className="h-3.5 w-3.5 sm:h-4 sm:w-4 mr-1.5 sm:mr-2" /> Quiz
         </button>
         <button
           onClick={() => setActiveTab('flashcards')}
-          className={`flex-1 min-w-[90px] whitespace-nowrap flex items-center justify-center px-3 py-2.5 text-sm font-bold rounded-xl transition-all duration-200 ${
+          className={`flex-1 min-w-[80px] sm:min-w-[90px] whitespace-nowrap flex items-center justify-center px-2 py-2 sm:px-3 sm:py-2.5 text-xs sm:text-sm font-bold rounded-lg sm:rounded-xl transition-all duration-200 ${
             activeTab === 'flashcards' 
               ? 'bg-[#1A1515] text-[#F5F2E8] shadow-md' 
               : 'text-[#73615A] hover:text-[#1A1515] hover:bg-[#EBE3C3]/60'
           }`}
         >
-          <Layers className="h-4 w-4 mr-2" /> Cards
+          <Layers className="h-3.5 w-3.5 sm:h-4 sm:w-4 mr-1.5 sm:mr-2" /> Cards
         </button>
       </div>
 

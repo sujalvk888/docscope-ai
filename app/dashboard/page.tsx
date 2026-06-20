@@ -52,19 +52,19 @@ export default async function DashboardPage() {
     <div className="min-h-screen bg-[#EBE3C3] text-[#2B1C18] font-sans">
       {/* Dashboard Nav */}
       <header className="border-b border-[#D3C9AA] bg-[#DFD6B7] sticky top-0 z-40 shadow-sm">
-        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-          <div className="flex items-center space-x-3">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between">
+          <div className="flex items-center space-x-2 sm:space-x-3">
             <Image 
               src={logo} 
               alt="DocScope Logo" 
-              width={28} 
-              height={28} 
-              className="rounded-md object-contain"
+              width={24} 
+              height={24} 
+              className="rounded-md object-contain sm:w-[28px] sm:h-[28px]"
             />
-            <span className="font-bold text-xl text-[#1A1515]">DocScope</span>
+            <span className="font-bold text-lg sm:text-xl text-[#1A1515]">DocScope</span>
           </div>
-          <div className="flex items-center space-x-6">
-            <span className="text-sm font-medium text-[#73615A]">{user.email}</span>
+          <div className="flex items-center space-x-4 sm:space-x-6">
+            <span className="hidden sm:inline text-sm font-medium text-[#73615A]">{user.email}</span>
             <form action="/api/auth/signout" method="POST">
               <Button variant="outline" size="sm" className="rounded-lg hover:bg-[#EBE3C3]">Sign Out</Button>
             </form>
@@ -72,89 +72,91 @@ export default async function DashboardPage() {
         </div>
       </header>
 
-      <main className="max-w-7xl mx-auto px-6 py-12 space-y-12">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12 space-y-8 sm:space-y-12">
         {/* Welcome Area */}
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 bg-[#1A1515] p-10 rounded-3xl shadow-xl">
-          <div className="space-y-3">
-            <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-[#F5F2E8]">Welcome to your Workspace</h1>
-            <p className="text-[#DFD6B7] text-lg">Transform your current material into an AI interactive learning hub.</p>
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 bg-[#1A1515] p-6 sm:p-10 rounded-3xl shadow-xl">
+          <div className="space-y-2 sm:space-y-3">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-[#F5F2E8]">Welcome to your Workspace</h1>
+            <p className="text-[#DFD6B7] text-base sm:text-lg">Transform your current material into an AI interactive learning hub.</p>
           </div>
-          <UploadButton userId={user.id} />
+          <div className="w-full md:w-auto">
+            <UploadButton userId={user.id} />
+          </div>
         </div>
 
         {/* Analytics Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
           <Card className="hover:shadow-md transition-shadow">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-bold text-[#73615A] uppercase tracking-wider">Documents Studied</CardTitle>
-              <FileText className="h-5 w-5 text-[#DB6E4C]" />
+              <CardTitle className="text-xs sm:text-sm font-bold text-[#73615A] uppercase tracking-wider">Documents Studied</CardTitle>
+              <FileText className="h-4 w-4 sm:h-5 sm:w-5 text-[#DB6E4C]" />
             </CardHeader>
             <CardContent>
-              <div className="text-4xl font-extrabold text-[#1A1515]">{documents?.length || 0}</div>
-              <p className="text-sm text-[#73615A] mt-2 font-medium">Total uploaded files</p>
+              <div className="text-3xl sm:text-4xl font-extrabold text-[#1A1515]">{documents?.length || 0}</div>
+              <p className="text-xs sm:text-sm text-[#73615A] mt-1 sm:mt-2 font-medium">Total uploaded files</p>
             </CardContent>
           </Card>
 
           <Card className="hover:shadow-md transition-shadow border-t-4 border-t-[#E9C85B]">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-bold text-[#73615A] uppercase tracking-wider">Average Quiz Score</CardTitle>
-              <GraduationCap className="h-5 w-5 text-[#E9C85B]" />
+              <CardTitle className="text-xs sm:text-sm font-bold text-[#73615A] uppercase tracking-wider">Average Quiz Score</CardTitle>
+              <GraduationCap className="h-4 w-4 sm:h-5 sm:w-5 text-[#E9C85B]" />
             </CardHeader>
             <CardContent>
-              <div className="text-4xl font-extrabold text-[#1A1515]">{hasQuizzes ? `${averageScore}%` : '--%'}</div>
-              <p className="text-sm text-[#73615A] mt-2 font-medium">
+              <div className="text-3xl sm:text-4xl font-extrabold text-[#1A1515]">{hasQuizzes ? `${averageScore}%` : '--%'}</div>
+              <p className="text-xs sm:text-sm text-[#73615A] mt-1 sm:mt-2 font-medium">
                 {hasQuizzes ? `Based on ${quizResults?.length} completed quizzes` : 'No quizzes taken yet'}
               </p>
             </CardContent>
           </Card>
 
-          <Card className="hover:shadow-md transition-shadow">
+          <Card className="hover:shadow-md transition-shadow sm:col-span-2 md:col-span-1">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-bold text-[#73615A] uppercase tracking-wider">Saved Study Notes</CardTitle>
-              <BookOpen className="h-5 w-5 text-[#DB6E4C]" />
+              <CardTitle className="text-xs sm:text-sm font-bold text-[#73615A] uppercase tracking-wider">Saved Study Notes</CardTitle>
+              <BookOpen className="h-4 w-4 sm:h-5 sm:w-5 text-[#DB6E4C]" />
             </CardHeader>
             <CardContent>
-              <div className="text-4xl font-extrabold text-[#1A1515]">{studyNotesCount || 0}</div>
-              <p className="text-sm text-[#73615A] mt-2 font-medium">Total interactions logged</p>
+              <div className="text-3xl sm:text-4xl font-extrabold text-[#1A1515]">{studyNotesCount || 0}</div>
+              <p className="text-xs sm:text-sm text-[#73615A] mt-1 sm:mt-2 font-medium">Total interactions logged</p>
             </CardContent>
           </Card>
         </div>
 
         {/* Recent History Segment */}
-        <div className="space-y-6 pt-4">
-          <div className="flex items-center space-x-3 text-[#1A1515] font-bold text-2xl">
-            <History className="h-6 w-6 text-[#DB6E4C]" />
+        <div className="space-y-4 sm:space-y-6 pt-2 sm:pt-4">
+          <div className="flex items-center space-x-2 sm:space-x-3 text-[#1A1515] font-bold text-xl sm:text-2xl">
+            <History className="h-5 w-5 sm:h-6 sm:w-6 text-[#DB6E4C]" />
             <h2>Document History</h2>
           </div>
 
           {documents && documents.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
               {documents.map((doc) => (
                 <Card key={doc.id} className="relative group hover:-translate-y-1 transition-transform duration-300">
-                  <form action={deleteDocument} className="absolute top-4 right-4 z-10 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <form action={deleteDocument} className="absolute top-3 right-3 sm:top-4 sm:right-4 z-10 sm:opacity-0 group-hover:opacity-100 transition-opacity">
                     <input type="hidden" name="documentId" value={doc.id} />
                     <Button 
                       type="submit" 
                       variant="ghost" 
                       size="icon" 
-                      className="h-9 w-9 text-[#73615A] hover:text-[#F5F2E8] hover:bg-[#5F170D] rounded-full transition-colors"
+                      className="h-8 w-8 sm:h-9 sm:w-9 text-[#73615A] hover:text-[#F5F2E8] hover:bg-[#5F170D] rounded-full transition-colors"
                       title="Delete Workspace"
                     >
                       <Trash2 className="h-4 w-4" />
                     </Button>
                   </form>
 
-                  <CardHeader className="pb-4 pr-14">
-                    <CardTitle className="text-lg font-bold truncate text-[#1A1515]" title={doc.file_name}>
+                  <CardHeader className="pb-3 sm:pb-4 pr-12 sm:pr-14">
+                    <CardTitle className="text-base sm:text-lg font-bold truncate text-[#1A1515]" title={doc.file_name}>
                       {doc.file_name}
                     </CardTitle>
-                    <p className="text-sm text-[#73615A] font-medium mt-1">
+                    <p className="text-xs sm:text-sm text-[#73615A] font-medium mt-1">
                       Uploaded {new Date(doc.created_at).toLocaleDateString()}
                     </p>
                   </CardHeader>
                   <CardContent>
                     <Link href={`/workspace/${doc.id}`}>
-                      <Button variant="secondary" className="w-full justify-between px-6 rounded-xl">
+                      <Button variant="secondary" className="w-full justify-between px-4 sm:px-6 rounded-xl text-sm sm:text-base">
                         Open Workspace <ArrowRight className="h-4 w-4 text-[#E9C85B]" />
                       </Button>
                     </Link>
@@ -163,8 +165,8 @@ export default async function DashboardPage() {
               ))}
             </div>
           ) : (
-            <div className="border-2 border-dashed border-[#D3C9AA] rounded-3xl p-16 text-center bg-[#DFD6B7]/50">
-              <p className="text-[#73615A] text-lg font-medium">Your learning repository is empty. Upload your first document to launch a workspace session.</p>
+            <div className="border-2 border-dashed border-[#D3C9AA] rounded-3xl p-10 sm:p-16 text-center bg-[#DFD6B7]/50">
+              <p className="text-[#73615A] text-base sm:text-lg font-medium">Your learning repository is empty. Upload your first document to launch a workspace session.</p>
             </div>
           )}
         </div>
